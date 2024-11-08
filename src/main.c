@@ -13,10 +13,11 @@ int main(int argc, char *argv[]) {
     const char *csv_file = argv[1];
     const char *json_file = argv[2];
 
+    // Convert CSV to JSON
     if (convert_csv_to_json(csv_file, json_file) == 0) {
         printf("Conversion successful: %s\n", json_file);
     } else {
-        printf("Conversion failed.\n")
+        printf("Conversion failed.\n");
     }
 
     return 0;
