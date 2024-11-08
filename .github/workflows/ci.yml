@@ -24,3 +24,7 @@ jobs:
     # Step 3: Build the project using the Makefile
     - name: Build the project
       run: make
+
+    # Step 4: Run the unit tests
+    - name: Run tests
+      run: make tests
