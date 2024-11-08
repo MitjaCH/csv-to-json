@@ -1,0 +1,26 @@
+name: CSV to JSON Converter Build and Test
+
+on:
+  push:
+    branches:
+      - main      # Run on push to the 'main' branch
+  pull_request:
+    branches:
+      - main      # Run on pull request to the 'main' branch
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest  # Use Ubuntu as the runner environment
+    
+    steps:
+    # Step 1: Checkout the repository
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    # Step 2: Set up GCC on the runner
+    - name: Set up GCC
+      run: sudo apt-get update && sudo apt-get install -y gcc make
+
+    # Step 3: Build the project using the Makefile
+    - name: Build the project
+      run: make
