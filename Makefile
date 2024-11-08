@@ -30,5 +30,4 @@ tests: $(OBJ)
 clean:
 	rm -f $(OBJ) $(TARGET) tests/test_runner $(OUTPUT_DIR)/*.json
 
-
 .PHONY: all clean tests
