@@ -13,7 +13,7 @@ INCLUDE = -I$(INC_DIR)
 # Default target
 all: $(TARGET)
 
-# Build the executable
+# Build the main executable
 $(TARGET): $(OBJ)
 	$(CC) $(OBJ) -o $(TARGET)
 
@@ -21,13 +21,20 @@ $(TARGET): $(OBJ)
 %.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
+# Test executables
+tests/test_csv_parser: $(SRC_DIR)/csv_parser.c $(TEST_DIR)/test_csv_parser.c
+	$(CC) $(CFLAGS) $(INCLUDE) $(SRC_DIR)/csv_parser.c $(TEST_DIR)/test_csv_parser.c -o tests/test_csv_parser
+
+tests/test_json_writer: $(SRC_DIR)/json_writer.c $(TEST_DIR)/test_json_writer.c
+	$(CC) $(CFLAGS) $(INCLUDE) $(SRC_DIR)/json_writer.c $(TEST_DIR)/test_json_writer.c -o tests/test_json_writer
+
 # Run tests
-tests: $(OBJ)
-	$(CC) $(CFLAGS) $(INCLUDE) $(TEST_DIR)/*.c -o tests/test_runner
-	./tests/test_runner
+tests: tests/test_csv_parser tests/test_json_writer
+	./tests/test_csv_parser
+	./tests/test_json_writer
 
 # Clean the build
 clean:
-	rm -f $(OBJ) $(TARGET) tests/test_runner $(OUTPUT_DIR)/*.json
+	rm -f $(OBJ) $(TARGET) tests/test_csv_parser tests/test_json_writer $(OUTPUT_DIR)/*.json
 
 .PHONY: all clean tests
