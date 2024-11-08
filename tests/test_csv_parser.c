@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "csv_parser.h"
+#include <stdlib.h> 
 
 void test_parse_csv_line() {
     char line[] = "John,30,New York";
